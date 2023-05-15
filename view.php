@@ -1,9 +1,4 @@
 <?php
-session_start();
-if (isset($_SESSION['password'])) {
-
-?>
-<?php
 require('header.php');
 require('connection.php');
 
@@ -50,8 +45,8 @@ $appointments = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <td><?php echo $appointment['typesoin']; ?></td>
                         <td>
                             <a href="update.php?id=<?php echo $appointment['id_client']; ?>" class="btn btn-primary">Update</a>
-                            <a href="delete.php?id=<?php echo $appointment['id_client']; ?>" class="btn btn-danger">Delete</a>
-                            <a href="bill.php?id=<?php echo $appointment['id_client']; ?>" class="btn btn-info">Generate Bill</a>
+                            <a href="delete.php?id=<?php echo $appointment['id_client']; ?>" class="btn btn-danger">Delette</a>
+                            <a href="bill.php?id=<?php echo $appointment['id_client']; ?>" class="btn btn-info">Generate pdf</a>
                         </td>
                     </tr>
                 <?php } ?>
@@ -60,6 +55,4 @@ $appointments = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
 </body>
 
-</html><?php } else {
-    header('location:login.php');
-} ?>
+</html>

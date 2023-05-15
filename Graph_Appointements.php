@@ -1,11 +1,7 @@
 <?php
-session_start();
-if (isset($_SESSION['password'])) {
-
-?>
-<?php
 require('connection.php');
 require('header.php');
+
 // Fetch the statistics data
 $stmt = $conn->prepare("SELECT typeSoin.nomSoin, COUNT(appointments.id_appointment) AS appointmentCount
                       FROM typeSoin
@@ -17,10 +13,16 @@ $statistics = $stmt->fetchAll(PDO::FETCH_ASSOC);
 // Prepare the data for the graph
 $labels = [];
 $data = [];
+$backgroundColor = [];
+$borderColor = [];
 
 foreach ($statistics as $row) {
     $labels[] = $row['nomSoin'];
     $data[] = $row['appointmentCount'];
+
+    // Generate random colors
+    $backgroundColor[] = 'rgba(' . rand(0, 255) . ',' . rand(0, 255) . ',' . rand(0, 255) . ', 0.5)';
+    $borderColor[] = 'rgba(' . rand(0, 255) . ',' . rand(0, 255) . ',' . rand(0, 255) . ', 1)';
 }
 ?>
 
@@ -43,6 +45,8 @@ foreach ($statistics as $row) {
         // Get the data from PHP
         var labels = <?php echo json_encode($labels); ?>;
         var data = <?php echo json_encode($data); ?>;
+        var backgroundColor = <?php echo json_encode($backgroundColor); ?>;
+        var borderColor = <?php echo json_encode($borderColor); ?>;
 
         // Create the chart
         var ctx = document.getElementById('appointmentsChart').getContext('2d');
@@ -53,8 +57,8 @@ foreach ($statistics as $row) {
                 datasets: [{
                     label: 'Appointment Count',
                     data: data,
-                    backgroundColor: 'rgba(54, 162, 235, 0.5)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
+                    backgroundColor: backgroundColor,
+                    borderColor: borderColor,
                     borderWidth: 1
                 }]
             },
@@ -70,6 +74,4 @@ foreach ($statistics as $row) {
     </script>
 </body>
 
-</html><?php } else {
-    header('location:login.php');
-} ?>
+</html>

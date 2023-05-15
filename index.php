@@ -3,6 +3,8 @@ session_start();
 if (isset($_SESSION['password'])) {
 
 ?>
+    <?php require('header.php') ?>
+
 
     <!DOCTYPE html>
     <html>
@@ -13,7 +15,6 @@ if (isset($_SESSION['password'])) {
     </head>
 
     <body>
-        <?php require('header.php') ?>
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-6 mt-5">

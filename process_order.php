@@ -36,7 +36,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bindParam(':clientId', $clientId);
         $stmt->bindParam(':typeSoin', $typeSoinId);
         $stmt->execute();
-        
     }
 
 

@@ -1,9 +1,4 @@
 <?php
-session_start();
-if (isset($_SESSION['password'])) {
-
-?>
-<?php
 require('connection.php');
 require('header.php');
 
@@ -113,6 +108,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 </body>
 
-</html><?php } else {
-    header('location:login.php');
-} ?>
+</html>

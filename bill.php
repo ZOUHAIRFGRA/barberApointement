@@ -1,10 +1,6 @@
-<?= require('header.php');
+<?php require('header.php');
 require('connection.php');
-?>
-<?php
-session_start();
-if (isset($_SESSION['password'])) {
-
+//require('session.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -88,6 +84,4 @@ if (isset($_SESSION['password'])) {
     </div>
 </body>
 
-</html><?php } else {
-    header('location:login.php');
-} ?>
+</html>
