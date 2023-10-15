@@ -63,6 +63,13 @@ if (isset($_SESSION['password'])) {
 
     </html>
 <?php
+    if (isset($_SESSION['success_message'])) {
+        echo '<script>alert("' . $_SESSION['success_message'] . '");</script>';
+        unset($_SESSION['success_message']); // Clear the success message
+    }
+    ?>
+<?php
+
 
 } else {
     header('location:login.php');

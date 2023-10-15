@@ -39,8 +39,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
 
-    // Display an alert message
-    echo "<script>alert('Registration succeeded');</script>";
+    // Set a session variable for success message
+    $_SESSION['success_message'] = "Registration succeeded";
 
     // Redirect back to the form page
     header("Location: index.php");
